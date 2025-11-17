@@ -1,3 +1,10 @@
+import { Platform } from 'react-native';
+
+// Only import gesture handler on native platforms (not web)
+if (Platform.OS !== 'web') {
+  require('react-native-gesture-handler');
+}
+
 import { registerRootComponent } from 'expo';
 
 import App from './App';

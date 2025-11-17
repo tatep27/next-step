@@ -2,6 +2,7 @@
   "expo": {
     "name": "opportunity-explorer",
     "slug": "opportunity-explorer",
+    "owner": "tatepark",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -13,18 +14,24 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.tatepark.opportunity-explorer"
     },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      },
-      "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+    "extra": {
+      "eas": {
+        "projectId": "8541d66d-8e3b-405a-adda-5a4b2409f608"
+      }
     },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/8541d66d-8e3b-405a-adda-5a4b2409f608"
+    },
+    "platforms": ["ios", "web"],
     "web": {
-      "favicon": "./assets/favicon.png"
+      "name": "Opportunity Explorer – Web Demo",
+      "bundler": "metro"
     }
   }
 }
