@@ -47,7 +47,7 @@ export const PreferencesScreen: React.FC<PreferencesScreenProps> = ({ onComplete
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.header}>
-          <Text style={styles.title}>Welcome to Opportunity Explorer!</Text>
+          <Text style={styles.title}>Welcome to NextStep!</Text>
           <Text style={styles.subtitle}>Tell us about your interests to get started</Text>
         </View>
 

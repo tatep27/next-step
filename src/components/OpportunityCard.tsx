@@ -14,12 +14,20 @@ interface OpportunityCardProps {
   opportunity: Resource;
   onSwipeLeft: () => void;
   onSwipeRight: () => void;
+  actionButtonsRef?: React.RefObject<View>;
+  highlightActionButtons?: boolean;
+  hideActionButtons?: boolean;
+  onActionButtonsLayout?: () => void;
 }
 
 export const OpportunityCard: React.FC<OpportunityCardProps> = ({
   opportunity,
   onSwipeLeft,
   onSwipeRight,
+  actionButtonsRef,
+  highlightActionButtons = false,
+  hideActionButtons = false,
+  onActionButtonsLayout,
 }) => {
   const handleLearnMore = () => {
     Linking.openURL(opportunity.externalLink);
@@ -54,17 +62,61 @@ export const OpportunityCard: React.FC<OpportunityCardProps> = ({
         </View>
       </ScrollView>
       
-      <View style={styles.actionButtons}>
-        <TouchableOpacity style={styles.passButton} onPress={onSwipeLeft}>
-          <Text style={styles.buttonText}>❌ Pass</Text>
+      <View 
+        ref={actionButtonsRef} 
+        onLayout={onActionButtonsLayout}
+        style={[
+          styles.actionButtons,
+          highlightActionButtons && styles.highlightedElement,
+          hideActionButtons && { opacity: 0 }
+        ]}
+      >
+        <TouchableOpacity 
+          style={[
+            styles.passButton,
+            highlightActionButtons && styles.highlightedActionButton,
+            highlightActionButtons && styles.passButtonHighlighted
+          ]} 
+          onPress={onSwipeLeft}
+        >
+          <Text style={[
+            styles.buttonText,
+            highlightActionButtons && styles.highlightedButtonText
+          ]}>
+            ❌ Pass
+          </Text>
         </TouchableOpacity>
         
-        <TouchableOpacity style={styles.likeButton} onPress={onSwipeRight}>
-          <Text style={styles.buttonText}>💾 Save</Text>
+        <TouchableOpacity 
+          style={[
+            styles.likeButton,
+            highlightActionButtons && styles.highlightedActionButton,
+            highlightActionButtons && styles.likeButtonHighlighted
+          ]} 
+          onPress={onSwipeRight}
+        >
+          <Text style={[
+            styles.buttonText,
+            highlightActionButtons && styles.highlightedButtonText
+          ]}>
+            💾 Save
+          </Text>
         </TouchableOpacity>
         
-        <TouchableOpacity style={styles.learnMoreButton} onPress={handleLearnMore}>
-          <Text style={styles.buttonText}>🔗 Learn More</Text>
+        <TouchableOpacity 
+          style={[
+            styles.learnMoreButton,
+            highlightActionButtons && styles.highlightedActionButton,
+            highlightActionButtons && styles.learnMoreButtonHighlighted
+          ]} 
+          onPress={handleLearnMore}
+        >
+          <Text style={[
+            styles.buttonText,
+            highlightActionButtons && styles.highlightedButtonText
+          ]}>
+            🔗 Learn More
+          </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -150,6 +202,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderTopWidth: 1,
     borderTopColor: '#e9ecef',
+    zIndex: 10,
+    elevation: 20,
   },
   passButton: {
     backgroundColor: '#e74c3c',
@@ -159,6 +213,9 @@ const styles = StyleSheet.create({
     flex: 1,
     marginRight: 10,
     alignItems: 'center',
+    opacity: 1,
+    zIndex: 100,
+    elevation: 100,
   },
   likeButton: {
     backgroundColor: '#27ae60',
@@ -168,6 +225,9 @@ const styles = StyleSheet.create({
     flex: 1,
     marginHorizontal: 5,
     alignItems: 'center',
+    opacity: 1,
+    zIndex: 100,
+    elevation: 100,
   },
   learnMoreButton: {
     backgroundColor: '#3498db',
@@ -177,10 +237,47 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 10,
     alignItems: 'center',
+    opacity: 1,
+    zIndex: 100,
+    elevation: 100,
   },
   buttonText: {
     color: '#fff',
     fontSize: 14,
     fontWeight: '600',
+  },
+  highlightedElement: {
+    borderWidth: 4,
+    borderColor: '#f39c12',
+    borderRadius: 20,
+    shadowColor: '#f39c12',
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 15,
+    elevation: 15,
+    opacity: 1, // Ensure full opacity
+    backgroundColor: 'rgba(243, 156, 18, 0.1)', // Subtle background tint
+  },
+  highlightedActionButton: {
+    opacity: 1,
+    transform: [{ scale: 1.05 }], // Slightly larger
+    zIndex: 200,
+    elevation: 200,
+  },
+  passButtonHighlighted: {
+    backgroundColor: '#ff6b6b', // Brighter red
+  },
+  likeButtonHighlighted: {
+    backgroundColor: '#51cf66', // Brighter green
+  },
+  learnMoreButtonHighlighted: {
+    backgroundColor: '#4dabf7', // Brighter blue
+  },
+  highlightedButtonText: {
+    fontSize: 15, // Slightly larger
+    fontWeight: '700', // Bolder
   },
 });

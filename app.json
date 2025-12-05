@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "opportunity-explorer",
-    "slug": "opportunity-explorer",
+    "name": "NextStep",
+    "slug": "nextstep",
     "owner": "tatepark",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -15,7 +15,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.tatepark.opportunity-explorer"
+      "bundleIdentifier": "com.tatepark.nextstep"
     },
     "extra": {
       "eas": {
@@ -30,7 +30,7 @@
     },
     "platforms": ["ios", "web"],
     "web": {
-      "name": "Opportunity Explorer – Web Demo",
+      "name": "NextStep – Web Demo",
       "bundler": "metro"
     }
   }

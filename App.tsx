@@ -38,6 +38,7 @@ export default function App() {
       case 'swipe':
         return (
           <SwipeScreen 
+            preferences={preferences}
             onNavigateToSaved={handleNavigateToSaved}
             onNavigateToFriends={handleNavigateToFriends}
           />
